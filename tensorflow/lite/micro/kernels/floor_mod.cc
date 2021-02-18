@@ -26,9 +26,6 @@ limitations under the License.
 // OLD-TODO(b/117523611): We should factor out a binary_op and put binary ops
 // there.
 namespace tflite {
-namespace ops {
-namespace micro {
-namespace floor_mod {
 namespace {
 
 // Input/output tensor index.
@@ -58,8 +55,6 @@ TfLiteStatus CalculateOpData(TfLiteContext* context, TfLiteNode* node) {
 
   return kTfLiteOk;
 }
-
-}  // namespace
 
 void* Init(TfLiteContext* context, const char* buffer, size_t length) {
   return nullptr;
@@ -139,16 +134,14 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
 }  // namespace floor_mod
 
 TfLiteRegistration Register_FLOOR_MOD() {
-  return {/*init=*/floor_mod::Init,
+  return {/*init=*/Init,
           /*free=*/nullptr,
-          /*prepare=*/floor_mod::Prepare,
-          /*invoke=*/floor_mod::Eval,
+          /*prepare=*/Prepare,
+          /*invoke=*/Eval,
           /*profiling_string=*/nullptr,
           /*builtin_code=*/0,
           /*custom_name=*/nullptr,
           /*version=*/0};
 }
 
-}  // namespace micro
-}  // namespace ops
 }  // namespace tflite

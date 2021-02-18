@@ -24,14 +24,14 @@ limitations under the License.
 namespace tflite {
 namespace testing {
 namespace {
+
 void ExecuteFloorModTest(TfLiteTensor* tensors, int tensors_count) {
   constexpr int kInputArrayData[] = {2, 0, 1};
   TfLiteIntArray* inputs_array = IntArrayFromInts(kInputArrayData);
   constexpr int kOutputArrayData[] = {1, 2};
   TfLiteIntArray* outputs_array = IntArrayFromInts(kOutputArrayData);
 
-  const TfLiteRegistration registration =
-      tflite::ops::micro::Register_FLOOR_MOD();
+  const TfLiteRegistration registration = tflite::Register_FLOOR_MOD();
   micro::KernelRunner runner(registration, tensors, tensors_count, inputs_array,
                              outputs_array, nullptr);
 
