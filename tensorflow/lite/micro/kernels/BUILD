@@ -219,6 +219,7 @@ cc_library(
         "elementwise.cc",
         "exp.cc",
         "floor.cc",
+        "floor_div.cc",
         "l2norm.cc",
         "logical.cc",
         "logistic.cc",
@@ -524,6 +525,21 @@ cc_test(
 cc_test(
     name = "exp_test",
     srcs = ["exp_test.cc"],
+    deps = [
+        ":kernel_runner",
+        "//tensorflow/lite/c:common",
+        "//tensorflow/lite/micro:debug_log",
+        "//tensorflow/lite/micro:op_resolvers",
+        "//tensorflow/lite/micro:test_helpers",
+        "//tensorflow/lite/micro/testing:micro_test",
+    ],
+)
+
+cc_test(
+    name = "floor_div_test",
+    srcs = [
+        "floor_div_test.cc",
+    ],
     deps = [
         ":kernel_runner",
         "//tensorflow/lite/c:common",
