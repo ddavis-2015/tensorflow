@@ -23,9 +23,6 @@ limitations under the License.
 #include "tensorflow/lite/micro/micro_utils.h"
 
 namespace tflite {
-namespace ops {
-namespace micro {
-namespace floor_div {
 namespace {
 
 // Input/output tensor index.
@@ -53,8 +50,6 @@ TfLiteStatus CalculateOpData(TfLiteContext* context, TfLiteNode* node) {
 
   return kTfLiteOk;
 }
-
-}  // namespace
 
 void* Init(TfLiteContext* context, const char* buffer, size_t length) {
   return nullptr;
@@ -123,19 +118,17 @@ TfLiteStatus Eval(TfLiteContext* context, TfLiteNode* node) {
   }
 }
 
-}  // namespace floor_div
+}  // namespace
 
 TfLiteRegistration Register_FLOOR_DIV() {
-  return {/*init=*/floor_div::Init,
+  return {/*init=*/Init,
           /*free=*/nullptr,
-          /*prepare=*/floor_div::Prepare,
-          /*invoke=*/floor_div::Eval,
+          /*prepare=*/Prepare,
+          /*invoke=*/Eval,
           /*profiling_string=*/nullptr,
           /*builtin_code=*/0,
           /*custom_name=*/nullptr,
           /*version=*/0};
 }
 
-}  // namespace micro
-}  // namespace ops
 }  // namespace tflite
